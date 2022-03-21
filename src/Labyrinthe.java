@@ -100,7 +100,14 @@ class Labyrinthe{
 
 
     public String toString() {
-        throw new Error("TODO");
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < murs.length; i++) {
+            for (int j = 0; j < murs[i].length; j++) {
+                res.append(this.getChar(i, j));
+            }
+            res.append("\n");
+        }
+        return res.toString();
     }
 
 

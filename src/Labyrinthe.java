@@ -44,7 +44,15 @@ class Labyrinthe{
     private static final String DROITE  = "droite";
 
     char getChar(int x, int y) {
-        throw new Error("TODO");
+        if (murs[x][y] == true){
+            return MUR;
+        } else if (this.personnage.x == x && this.personnage.y == y){
+            return PJ;
+        } else if (this.sortie.x == x && this.sortie.y == y=){
+            return SORTIE;
+        } else{
+            return VIDE;
+        }
     }
 
 

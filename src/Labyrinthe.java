@@ -56,8 +56,41 @@ class Labyrinthe{
     }
 
 
-    static int[] getSuivant(int x, int y, String action) {
-        throw new Error("TODO");
+    /**
+     * methode qui retorune les coordonnees de la case voisine en fonction de la direction
+     *
+     * @param x ligne de la case d origine
+     * @param y colonne de la case d origine
+     * @param action direction dont on veut connaitre les coordonnees
+     * @return coordonnees de la case voisine
+     * @throws ActionInconnueException exception representant une action non valide
+     */
+    static int[] getSuivant(int x, int y, String action) throws ActionInconnueException {
+
+        int res[] = new int[2];
+
+        switch (action) {
+            case HAUT:
+                res[1] = x-1;
+                res[2] = y;
+                break;
+            case BAS:
+                res[1] = x+1;
+                res[2] = y;
+                break;
+            case GAUCHE:
+                res[1] = x;
+                res[2] = y-1;
+                break;
+            case DROITE:
+                res[1] = x;
+                res[2] = y+1;
+                break;
+            default:
+                throw ActionInconnueException;
+        }
+
+        return res;
     }
 
 

@@ -119,6 +119,9 @@ class Labyrinthe{
     }
 
 
+    /**
+     * @return vrai si la partie est fini, non sinon
+     */
     public boolean etreFini() {
         return ((this.personnage.getX() == this.sortie.getX()) && (this.personnage.getY() == this.sortie.getY()));
     }

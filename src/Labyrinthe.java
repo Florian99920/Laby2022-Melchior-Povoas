@@ -104,6 +104,9 @@ class Labyrinthe{
     }
 
 
+    /**
+     * @return l'affichage du labyrinthe
+     */
     public String toString() {
         StringBuilder res = new StringBuilder();
         for (int i = 0; i < murs.length; i++) {

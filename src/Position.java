@@ -19,4 +19,18 @@ public class Position {
         this.x = px;
         this.y = py;
     }
+
+    /**
+     * @return numéro de ligne
+     */
+    public int getX() {
+        return this.x;
+    }
+
+    /**
+     * @return numéro de ligne
+     */
+    public int getY() {
+        return this.y;
+    }
 }

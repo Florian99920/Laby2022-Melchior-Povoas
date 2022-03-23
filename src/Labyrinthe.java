@@ -112,7 +112,7 @@ class Labyrinthe{
 
 
     public boolean etreFini() {
-        throw new Error("TODO");
+        return ((this.personnage.getX() == this.sortie.getX()) && (this.personnage.getY() == this.sortie.getY()));
     }
 
     public static Labyrinthe chargerLabyrinthe(String nom) {

@@ -44,11 +44,11 @@ class Labyrinthe{
     private static final String DROITE  = "droite";
 
     char getChar(int x, int y) {
-        if (murs[x][y] == true){
+        if (murs[x][y] == true) {
             return MUR;
-        } else if (this.personnage.x == x && this.personnage.y == y){
+        } else if ((this.personnage.getX() == x) && (this.personnage.getY() == y)){
             return PJ;
-        } else if (this.sortie.x == x && this.sortie.y == y=){
+        } else if ((this.sortie.getX() == x) && (this.sortie.getY() == y)) {
             return SORTIE;
         } else{
             return VIDE;

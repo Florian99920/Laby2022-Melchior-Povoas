@@ -43,6 +43,11 @@ class Labyrinthe{
     private static final String GAUCHE  = "gauche";
     private static final String DROITE  = "droite";
 
+    /**
+     * @param x numéro de ligne
+     * @param y numéro de colonne
+     * @return le caractere correspond aux coordonnes x et y
+     */
     char getChar(int x, int y) {
         if (murs[x][y] == true) {
             return MUR;

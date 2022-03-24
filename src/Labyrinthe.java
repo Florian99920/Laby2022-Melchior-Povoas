@@ -173,53 +173,57 @@ class Labyrinthe{
         String temp = entree.readLine();
 
         while (temp != null) {
-            testLigne++;
 
-            if (testLigne > laby.nbLignes) {
+            if (!temp.isEmpty()) {
 
-                throw new FichierIncorrectException("nbLignes ne correspond pas");
+                testLigne++;
 
-            } else {
-                if (temp.length() != laby.nbColonnes) {
+                if (testLigne > laby.nbLignes) {
 
-                    throw new FichierIncorrectException("nbColonnes ne correspond pas a la ligne " + testLigne);
+                    throw new FichierIncorrectException("nbLignes ne correspond pas");
 
                 } else {
+                    if (temp.length() != laby.nbColonnes) {
 
-                    for (int i = 0; i < laby.nbColonnes; i++) {
-                        char caractere = temp.charAt(i);
+                        throw new FichierIncorrectException("nbColonnes ne correspond pas a la ligne " + testLigne);
 
-                        switch (caractere) {
-                            case MUR:
+                    } else {
 
-                                laby.murs[testLigne - 1][i] = true;
-                                break;
+                        for (int i = 0; i < laby.nbColonnes; i++) {
+                            char caractere = temp.charAt(i);
 
-                            case PJ:
+                            switch (caractere) {
+                                case MUR:
 
-                                if (persoPresent) {
-                                    throw new FichierIncorrectException("plusieurs personnages");
-                                } else {
-                                    laby.personnage = new Personnage(testLigne - 1, i);
-                                    persoPresent = true;
-                                }
-                                break;
+                                    laby.murs[testLigne - 1][i] = true;
+                                    break;
 
-                            case SORTIE:
+                                case PJ:
 
-                                if (sortiePresente) {
-                                    throw new FichierIncorrectException("plusieurs sorties");
-                                } else {
-                                    laby.sortie = new Sortie(testLigne - 1, i);
-                                    sortiePresente = true;
-                                }
-                                break;
+                                    if (persoPresent) {
+                                        throw new FichierIncorrectException("plusieurs personnages");
+                                    } else {
+                                        laby.personnage = new Personnage(testLigne - 1, i);
+                                        persoPresent = true;
+                                    }
+                                    break;
 
-                            case VIDE:
-                                break;
+                                case SORTIE:
 
-                            default:
-                                throw new FichierIncorrectException("caractere inconnu <" + caractere + ">");
+                                    if (sortiePresente) {
+                                        throw new FichierIncorrectException("plusieurs sorties");
+                                    } else {
+                                        laby.sortie = new Sortie(testLigne - 1, i);
+                                        sortiePresente = true;
+                                    }
+                                    break;
+
+                                case VIDE:
+                                    break;
+
+                                default:
+                                    throw new FichierIncorrectException("caractere inconnu <" + caractere + ">");
+                            }
                         }
                     }
                 }

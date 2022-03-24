@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MainLaby {
@@ -9,21 +10,42 @@ public class MainLaby {
         } else {
             Labyrinthe laby;
             try {
-                laby = Labyrinthe.chargerLabyrinthe(args[1]);
-            } catch (FileNotFoundException f){
-                System.out.println("Fichier inexistant");
-            }
-            while (!laby.etreFini()){
-                System.out.println(laby);
+                laby = Labyrinthe.chargerLabyrinthe(args[0]);
+                boolean exit = false;
                 Scanner sc = new Scanner(System.in);
-                System.out.println("Choisissez une direction (haut, bas, gauche, droite : ");
-                String action = sc.nextLine();
-                try {
-                    laby.deplacerPerso(action);
-                } catch (ActionInconnueException a){
-                    System.out.println("Direction inconnu, reessayer :");
-                    action = sc.nextLine();
+
+                System.out.println(laby);
+
+                while (!laby.etreFini() && !exit){
+
+                    System.out.println("Choisissez une direction (haut, bas, gauche, droite : ");
+                    String action = sc.nextLine();
+
+                    if (action.equals("exit")) {
+                        exit = true;
+                        System.out.println("Vous quittez le jeu");
+                    } else {
+
+                        try {
+                            laby.deplacerPerso(action);
+                            System.out.println(laby);
+                        } catch (ActionInconnueException a){
+                            System.out.println(a.getMessage());
+                        }
+
+                    }
                 }
+
+                if (laby.etreFini()) {
+                    System.out.println("Vous avez gagné");
+                }
+
+            } catch (FileNotFoundException f) {
+                System.out.println("Fichier inexistant");
+            } catch (FichierIncorrectException e) {
+                System.out.println(e.getMessage());
+            } catch (IOException e) {
+                System.out.println("Erreur lors du chargement des données");
             }
         }
     }

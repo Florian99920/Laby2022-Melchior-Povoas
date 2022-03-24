@@ -1,3 +1,5 @@
+import java.io.*;
+
 /**
  * Squelette de classe labyrinthe
  */
@@ -8,6 +10,17 @@ class Labyrinthe{
      * stockant les murs du labyrinthe
      */
     private boolean[][] murs;
+
+    /**
+     * nombre de lignes du labyrinthe
+     */
+    private int nbLignes;
+
+    /**
+     * nombre de colonnes du labyrinthe
+     */
+    private int nbColonnes;
+
 
     /**
      * Represente les coordonnees du personnage
@@ -49,7 +62,7 @@ class Labyrinthe{
      * @return le caractere correspond aux coordonnes x et y
      */
     char getChar(int x, int y) {
-        if (this.murs[x][y] == true) {
+        if (this.murs[x][y]) {
             return MUR;
         } else if ((this.personnage.getX() == x) && (this.personnage.getY() == y)){
             return PJ;
@@ -76,20 +89,20 @@ class Labyrinthe{
 
         switch (action) {
             case HAUT:
-                res[1] = x-1;
-                res[2] = y;
+                res[0] = x-1;
+                res[1] = y;
                 break;
             case BAS:
-                res[1] = x+1;
-                res[2] = y;
+                res[0] = x+1;
+                res[1] = y;
                 break;
             case GAUCHE:
-                res[1] = x;
-                res[2] = y-1;
+                res[0] = x;
+                res[1] = y-1;
                 break;
             case DROITE:
-                res[1] = x;
-                res[2] = y+1;
+                res[0] = x;
+                res[1] = y+1;
                 break;
             default:
                 throw new ActionInconnueException("L'action " + action + " n'est pas une action valable.");
@@ -135,8 +148,96 @@ class Labyrinthe{
         return ((this.personnage.getX() == this.sortie.getX()) && (this.personnage.getY() == this.sortie.getY()));
     }
 
-    public static Labyrinthe chargerLabyrinthe(String nom) {
-        throw new Error("TODO");
+    /**
+     * @param nom nom du fichier servant à charger le labyrinthe
+     * @return Le labyrinthe chargé
+     * @throws FileNotFoundException fichier absent ou inexistant
+     * @throws IOException erreur lors de la récupération des données
+     * @throws NumberFormatException erreur lors de la conversion String en int
+     * @throws FichierIncorrectException erreur lors du chargement du labyrinthe
+     */
+    public static Labyrinthe chargerLabyrinthe(String nom) throws FileNotFoundException,IOException, NumberFormatException, FichierIncorrectException {
+        Labyrinthe laby = new Labyrinthe();
+        BufferedReader entree = new BufferedReader(new FileReader(nom));
+
+        laby.nbLignes = Integer.parseInt(entree.readLine());
+        laby.nbColonnes = Integer.parseInt(entree.readLine());
+
+        laby.murs = new boolean[laby.nbLignes][laby.nbColonnes];
+
+        boolean persoPresent = false;
+        boolean sortiePresente = false;
+        int testLigne = 0;
+
+        String temp = entree.readLine();
+
+        while (temp != null) {
+            testLigne++;
+
+            if (testLigne > laby.nbLignes) {
+
+                throw new FichierIncorrectException("nbLignes ne correspond pas");
+
+            } else {
+                if (temp.length() != laby.nbColonnes) {
+
+                    throw new FichierIncorrectException("nbColonnes ne correspond pas a la ligne " + testLigne);
+
+                } else {
+
+                    for (int i = 0; i < laby.nbColonnes; i++) {
+                        char caractere = temp.charAt(i);
+
+                        switch (caractere) {
+                            case MUR:
+
+                                laby.murs[testLigne - 1][i] = true;
+                                break;
+
+                            case PJ:
+
+                                if (persoPresent) {
+                                    throw new FichierIncorrectException("plusieurs personnages");
+                                } else {
+                                    laby.personnage = new Personnage(testLigne - 1, i);
+                                    persoPresent = true;
+                                }
+                                break;
+
+                            case SORTIE:
+
+                                if (sortiePresente) {
+                                    throw new FichierIncorrectException("plusieurs sorties");
+                                } else {
+                                    laby.sortie = new Sortie(testLigne - 1, i);
+                                    sortiePresente = true;
+                                }
+                                break;
+
+                            case VIDE:
+                                break;
+
+                            default:
+                                throw new FichierIncorrectException("caractere inconnu <" + caractere + ">");
+                        }
+                    }
+                }
+            }
+
+            temp = entree.readLine();
+
+        }
+
+        if (!persoPresent) {
+
+            throw new FichierIncorrectException("personnage inconnu");
+
+        } else if (!sortiePresente) {
+            throw new FichierIncorrectException("sortie invonnue");
+        }
+
+        return laby;
+
     }
 
 }

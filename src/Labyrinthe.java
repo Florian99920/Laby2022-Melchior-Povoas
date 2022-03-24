@@ -119,9 +119,10 @@ class Labyrinthe{
      */
     void deplacerPerso(String action) throws ActionInconnueException{
         int res[] = this.getSuivant(this.personnage.getX(), this.personnage.getY(), action);
-        while (getChar(res[1], res[2]) != MUR) {
-            this.personnage.setX(res[1]);
-            this.personnage.setY(res[2]);
+        while (this.getChar(res[0], res[1]) != MUR) {
+            this.personnage.setX(res[0]);
+            this.personnage.setY(res[1]);
+            res = this.getSuivant(this.personnage.getX(), this.personnage.getY(), action);
         }
     }
 
@@ -233,7 +234,7 @@ class Labyrinthe{
             throw new FichierIncorrectException("personnage inconnu");
 
         } else if (!sortiePresente) {
-            throw new FichierIncorrectException("sortie invonnue");
+            throw new FichierIncorrectException("sortie inconnue");
         }
 
         return laby;

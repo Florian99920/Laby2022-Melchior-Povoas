@@ -33,4 +33,14 @@ public class Position {
     public int getY() {
         return this.y;
     }
+
+    /**
+     * @param x nouvelle valeur de x
+     */
+    public void setX(int x) {this.x = x;}
+
+    /**
+     * @param y nouvelle valeur de x
+     */
+    public void setY(int y) {this.y = y;}
 }

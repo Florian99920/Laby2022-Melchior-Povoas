@@ -1,4 +1,4 @@
-/** 
+/**
  * Squelette de classe labyrinthe
  */
 class Labyrinthe{
@@ -92,15 +92,21 @@ class Labyrinthe{
                 res[2] = y+1;
                 break;
             default:
-                throw ActionInconnueException;
+                throw new ActionInconnueException("L'action " + action + " n'est pas une action valable.");
         }
 
         return res;
     }
 
 
-    void deplacerPerso(String action) throws ActionInconnueException {
-        throw new Error("TODO");
+    void deplacerPerso(String action) {
+        try {
+            if (){
+
+            }
+        } catch (ActionInconnueException e){
+
+        }
     }
 
 

@@ -99,13 +99,16 @@ class Labyrinthe{
     }
 
 
-    void deplacerPerso(String action) {
-        try {
-            if (){
-
-            }
-        } catch (ActionInconnueException e){
-
+    /**
+     * Methode consistant a deplacer le personnage tant qu'il ne rencontre pas de mur
+     * @param action action a realiser
+     * @throws ActionInconnueException action inconnue
+     */
+    void deplacerPerso(String action) throws ActionInconnueException{
+        int res[] = this.getSuivant(this.personnage.getX(), this.personnage.getY(), action);
+        while (getChar(res[1], res[2]) != MUR) {
+            this.personnage.setX(res[1]);
+            this.personnage.setY(res[2]);
         }
     }
 

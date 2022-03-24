@@ -26,10 +26,10 @@ class Labyrinthe{
      * S pour la SORTIE
      * . pour une case VIDE
      */
-    private static final char MUR  = 'X';
-    private static final char PJ  = 'P';
-    private static final char SORTIE  = 'S';
-    private static final char VIDE  = '.';
+    public static final char MUR  = 'X';
+    public static final char PJ  = 'P';
+    public static final char SORTIE  = 'S';
+    public static final char VIDE  = '.';
 
     /**
      * Represente les actions du joueur
@@ -38,10 +38,10 @@ class Labyrinthe{
      * gauche pour GAUCHE
      * droite pour DROITE
      */
-    private static final String HAUT  = "haut";
-    private static final String BAS  = "bas";
-    private static final String GAUCHE  = "gauche";
-    private static final String DROITE  = "droite";
+    public static final String HAUT  = "haut";
+    public static final String BAS  = "bas";
+    public static final String GAUCHE  = "gauche";
+    public static final String DROITE  = "droite";
 
     /**
      * @param x numéro de ligne
@@ -49,7 +49,7 @@ class Labyrinthe{
      * @return le caractere correspond aux coordonnes x et y
      */
     char getChar(int x, int y) {
-        if (murs[x][y] == true) {
+        if (this.murs[x][y] == true) {
             return MUR;
         } else if ((this.personnage.getX() == x) && (this.personnage.getY() == y)){
             return PJ;

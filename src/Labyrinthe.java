@@ -158,6 +158,8 @@ class Labyrinthe{
      * @throws FichierIncorrectException erreur lors du chargement du labyrinthe
      */
     public static Labyrinthe chargerLabyrinthe(String nom) throws FileNotFoundException,IOException, NumberFormatException, FichierIncorrectException {
+
+        // initialisation de plusieurs variables
         Labyrinthe laby = new Labyrinthe();
         BufferedReader entree = new BufferedReader(new FileReader(nom));
 
@@ -172,26 +174,33 @@ class Labyrinthe{
 
         String temp = entree.readLine();
 
+        // tant qu'on atteint pas la fin du fichier
         while (temp != null) {
 
+            // si la ligne n'est pas vide
             if (!temp.isEmpty()) {
 
+                // on ajoute 1 au nombre de ligne lu
                 testLigne++;
 
+                // si le nombre de ligne lu est superieur au nombre de ligne du labyrinthe
                 if (testLigne > laby.nbLignes) {
-
+                    // alors on envoie l exception que le nombre de ligne ne correspond pas
                     throw new FichierIncorrectException("nbLignes ne correspond pas");
 
                 } else {
+                    // si la ligne ne possede pas le meme nombre de caractere que le labyrinthe
                     if (temp.length() != laby.nbColonnes) {
-
+                        //alors on envoie l exception que le nombre de colonnes ne correspond pas
                         throw new FichierIncorrectException("nbColonnes ne correspond pas a la ligne " + testLigne);
 
                     } else {
 
+                        // on parcourt les differents caracteres de la ligne
                         for (int i = 0; i < laby.nbColonnes; i++) {
                             char caractere = temp.charAt(i);
 
+                            // switch permettant de determiner la nature du caractere
                             switch (caractere) {
                                 case MUR:
 
@@ -200,7 +209,9 @@ class Labyrinthe{
 
                                 case PJ:
 
+                                    // si un personnage est deja present
                                     if (persoPresent) {
+                                        // alors il y a plusieurs personnages
                                         throw new FichierIncorrectException("plusieurs personnages");
                                     } else {
                                         laby.personnage = new Personnage(testLigne - 1, i);
@@ -210,7 +221,9 @@ class Labyrinthe{
 
                                 case SORTIE:
 
+                                    // si la sortie est deja presente
                                     if (sortiePresente) {
+                                        // alors il y a plusieurs sortie
                                         throw new FichierIncorrectException("plusieurs sorties");
                                     } else {
                                         laby.sortie = new Sortie(testLigne - 1, i);
@@ -221,6 +234,7 @@ class Labyrinthe{
                                 case VIDE:
                                     break;
 
+                                // si le caractere est inconnu
                                 default:
                                     throw new FichierIncorrectException("caractere inconnu <" + caractere + ">");
                             }
@@ -229,14 +243,17 @@ class Labyrinthe{
                 }
             }
 
+            // on lit la prochaine ligne
             temp = entree.readLine();
 
         }
 
+        // si aucun personnage n'est present
         if (!persoPresent) {
 
             throw new FichierIncorrectException("personnage inconnu");
 
+        // si aucune sortie n'est presente
         } else if (!sortiePresente) {
             throw new FichierIncorrectException("sortie inconnue");
         }

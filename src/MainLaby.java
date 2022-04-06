@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class MainLaby {
 
     public static void main(String[] args) {
-        if (args.length > 1){
+        if (args.length != 1){
             System.out.println("Nombre d'argument invalide.");
         } else {
             Labyrinthe laby;

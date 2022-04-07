@@ -264,4 +264,17 @@ class Labyrinthe{
 
     }
 
+    /**
+     * @return le personnage
+     */
+    public Personnage getPersonnage() {
+        return this.personnage;
+    }
+
+    /**
+     * @return la sortie
+     */
+    public Sortie getSortie() {
+        return this.sortie;
+    }
 }

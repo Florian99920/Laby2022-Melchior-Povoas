@@ -198,7 +198,7 @@ class Labyrinthe{
                     // si la ligne ne possede pas le meme nombre de caractere que le labyrinthe
                     if (temp.length() != laby.nbColonnes) {
                         //alors on envoie l exception que le nombre de colonnes ne correspond pas
-                        throw new FichierIncorrectException("nbColonnes ne correspond pas a la ligne " + testLigne);
+                        throw new FichierIncorrectException("nbColonnes ne correspond pas");
 
                     } else {
 

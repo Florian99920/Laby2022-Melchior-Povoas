@@ -159,14 +159,18 @@ class Labyrinthe{
      * @throws NumberFormatException erreur lors de la conversion String en int
      * @throws FichierIncorrectException erreur lors du chargement du labyrinthe
      */
-    public static Labyrinthe chargerLabyrinthe(String nom) throws FileNotFoundException,IOException, NumberFormatException, FichierIncorrectException {
+    public static Labyrinthe chargerLabyrinthe(String nom) throws FileNotFoundException,IOException, FichierIncorrectException {
 
         // initialisation de plusieurs variables
         Labyrinthe laby = new Labyrinthe();
         BufferedReader entree = new BufferedReader(new FileReader(nom));
 
-        laby.nbLignes = Integer.parseInt(entree.readLine());
-        laby.nbColonnes = Integer.parseInt(entree.readLine());
+        try {
+            laby.nbLignes = Integer.parseInt(entree.readLine());
+            laby.nbColonnes = Integer.parseInt(entree.readLine());
+        } catch (NumberFormatException e) {
+            throw new FichierIncorrectException("pb num ligne ou colonne");
+        }
 
         laby.murs = new boolean[laby.nbLignes][laby.nbColonnes];
 

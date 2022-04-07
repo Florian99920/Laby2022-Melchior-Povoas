@@ -277,4 +277,18 @@ class Labyrinthe{
     public Sortie getSortie() {
         return this.sortie;
     }
+
+    /**
+     * @return nombre de lignes du labyrinthe
+     */
+    public int getNbLignes() {
+        return this.nbLignes;
+    }
+
+    /**
+     * @return nombre de colonnes du labyrinthe
+     */
+    public int getNbColonnes() {
+        return this.nbColonnes;
+    }
 }

@@ -87,7 +87,7 @@ class Labyrinthe{
      */
     static int[] getSuivant(int x, int y, String action) throws ActionInconnueException {
 
-        int res[] = new int[2];
+        int[] res = new int[2];
 
         switch (action) {
             case HAUT:
@@ -120,7 +120,7 @@ class Labyrinthe{
      * @throws ActionInconnueException action inconnue
      */
     void deplacerPerso(String action) throws ActionInconnueException{
-        int res[] = this.getSuivant(this.personnage.getX(), this.personnage.getY(), action);
+        int[] res = this.getSuivant(this.personnage.getX(), this.personnage.getY(), action);
         while (this.getChar(res[0], res[1]) != MUR) {
             this.personnage.setX(res[0]);
             this.personnage.setY(res[1]);

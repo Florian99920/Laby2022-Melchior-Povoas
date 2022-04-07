@@ -350,4 +350,6 @@ public class TestLabyrinthe {
         // verification
         assertTrue(!fini,"Le jeu ne devrait pas etre fini");
     }
+
+
 }

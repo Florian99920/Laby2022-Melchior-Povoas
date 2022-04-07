@@ -1,7 +1,7 @@
 # Laby2022-Melchior-Povoas
 TP Laby en Qualité de Devs avec Melchior Damien et Povoas Florian
 
-## Difficultés recontrés au cours du TP
+## Difficultés rencontrés au cours du TP
 
 La chose qui nous a mis le plus en difficulté, c'est la méthode charger Labyrinthe puisqu'elle est très longue à réaliser car il y a beaucoup de vérifications comme pour gérer toutes les exceptions et en plus générales pour s'assurer du bon fonctionnement de la méthode. Mais à part ça, nous avons dû modifier plusieurs fois le MainLaby.java afin d'arriver au résultat voulut en gérant toutes les exceptions.
 

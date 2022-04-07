@@ -351,5 +351,229 @@ public class TestLabyrinthe {
         assertTrue(!fini,"Le jeu ne devrait pas etre fini");
     }
 
+    /**
+     * test chargerLabyrinthe OK
+     */
+    @Test
+    public void test21_chargerLabyrintheOK() throws Exception {
+        // methode testee
+        Labyrinthe laby = Labyrinthe.chargerLabyrinthe("laby\\laby0.txt");
 
+        // verification
+        assertEquals(5, laby.getNbLignes(),"Le nombre de lignes du labyrinthe devrait etre de 5");
+        assertEquals(7, laby.getNbColonnes(),"Le nombre de colonnes du labyrinthe devrait etre de 7");
+
+        assertEquals(2, laby.getPersonnage().getX(),"La coordonnee en x du personnage devrait etre de 2");
+        assertEquals(3, laby.getPersonnage().getY(),"La coordonnee en  du personnage devrait etre de 3");
+
+        assertEquals(1, laby.getSortie().getX(),"La coordonnee en x de la sortie devrait etre de 1");
+        assertEquals(1, laby.getSortie().getY(),"La coordonnee en x de la sortie devrait etre de 1");
+    }
+
+    /**
+     * test chargerLabyrinthe avec un nombre de ligne incorrect
+     */
+    @Test
+    public void test22_chargerLabyrinthe_nbLignesIncorrect() throws Exception {
+        // preparation des donnees
+        boolean exception = false;
+        String message = "";
+        String res = "nbLignes ne correspond pas";
+
+        // methode testee
+        try {
+            Labyrinthe laby = Labyrinthe.chargerLabyrinthe("laby\\labyNbLignesIncorrect.txt");
+        } catch (FichierIncorrectException e) {
+            exception = true;
+            message = e.getMessage();
+        }
+
+        // verification
+        assertTrue(exception, "Il devrait y avoir une erreur dans le chargement du labyrinthe");
+        assertEquals(res, message, "Le message d'exception devrait etre correct");
+    }
+
+    /**
+     * test chargerLabyrinthe avec un nombre de colonne incorrect
+     */
+    @Test
+    public void test23_chargerLabyrinthe_nbColonnesIncorrect() throws Exception {
+        // preparation des donnees
+        boolean exception = false;
+        String message = "";
+        String res = "nbColonnes ne correspond pas";
+
+        // methode testee
+        try {
+            Labyrinthe laby = Labyrinthe.chargerLabyrinthe("laby\\labyNbColonnesIncorrect.txt");
+        } catch (FichierIncorrectException e) {
+            exception = true;
+            message = e.getMessage();
+        }
+
+        // verification
+        assertTrue(exception, "Il devrait y avoir une erreur dans le chargement du labyrinthe");
+        assertEquals(res, message, "Le message d'exception devrait etre correct");
+    }
+
+    /**
+     * test chargerLabyrinthe avec un format des nombres de ligne incorrect
+     */
+    @Test
+    public void test24_chargerLabyrinthe_LignesFormatIncorrect() throws Exception {
+        // preparation des donnees
+        boolean exception = false;
+        String message = "";
+        String res = "pb num ligne ou colonne";
+
+        // methode testee
+        try {
+            Labyrinthe laby = Labyrinthe.chargerLabyrinthe("laby\\labyLignesFormatIncorrect.txt");
+        } catch (FichierIncorrectException e) {
+            exception = true;
+            message = e.getMessage();
+        }
+
+        // verification
+        assertTrue(exception, "Il devrait y avoir une erreur dans le chargement du labyrinthe");
+        assertEquals(res, message, "Le message d'exception devrait etre correct");
+    }
+
+    /**
+     * test chargerLabyrinthe avec un format des nombres de colonne incorrect
+     */
+    @Test
+    public void test25_chargerLabyrinthe_ColonnesFormatIncorrect() throws Exception {
+        // preparation des donnees
+        boolean exception = false;
+        String message = "";
+        String res = "pb num ligne ou colonne";
+
+        // methode testee
+        try {
+            Labyrinthe laby = Labyrinthe.chargerLabyrinthe("laby\\labyColonnesFormatIncorrect.txt");
+        } catch (FichierIncorrectException e) {
+            exception = true;
+            message = e.getMessage();
+        }
+
+        // verification
+        assertTrue(exception, "Il devrait y avoir une erreur dans le chargement du labyrinthe");
+        assertEquals(res, message, "Le message d'exception devrait etre correct");
+    }
+
+    /**
+     * test chargerLabyrinthe avec un caractere inconnu dans le labyrinthe
+     */
+    @Test
+    public void test26_chargerLabyrinthe_CaractereInconnu() throws Exception {
+        // preparation des donnees
+        boolean exception = false;
+        String message = "";
+        String res = "caractere inconnu <D>";
+
+        // methode testee
+        try {
+            Labyrinthe laby = Labyrinthe.chargerLabyrinthe("laby\\labyCaractereInconnu.txt");
+        } catch (FichierIncorrectException e) {
+            exception = true;
+            message = e.getMessage();
+        }
+
+        // verification
+        assertTrue(exception, "Il devrait y avoir une erreur dans le chargement du labyrinthe");
+        assertEquals(res, message, "Le message d'exception devrait etre correct");
+    }
+
+    /**
+     * test chargerLabyrinthe avec aucune sortie
+     */
+    @Test
+    public void test27_chargerLabyrinthe_pasSortie() throws Exception {
+        // preparation des donnees
+        boolean exception = false;
+        String message = "";
+        String res = "sortie inconnue";
+
+        // methode testee
+        try {
+            Labyrinthe laby = Labyrinthe.chargerLabyrinthe("laby\\laby_pasSortie.txt");
+        } catch (FichierIncorrectException e) {
+            exception = true;
+            message = e.getMessage();
+        }
+
+        // verification
+        assertTrue(exception, "Il devrait y avoir une erreur dans le chargement du labyrinthe");
+        assertEquals(res, message, "Le message d'exception devrait etre correct");
+    }
+
+    /**
+     * test chargerLabyrinthe avec deux sorties (ou plus)
+     */
+    @Test
+    public void test28_chargerLabyrinthe_deuxSortie() throws Exception {
+        // preparation des donnees
+        boolean exception = false;
+        String message = "";
+        String res = "plusieurs sorties";
+
+        // methode testee
+        try {
+            Labyrinthe laby = Labyrinthe.chargerLabyrinthe("laby\\laby_deuxSortie.txt");
+        } catch (FichierIncorrectException e) {
+            exception = true;
+            message = e.getMessage();
+        }
+
+        // verification
+        assertTrue(exception, "Il devrait y avoir une erreur dans le chargement du labyrinthe");
+        assertEquals(res, message, "Le message d'exception devrait etre correct");
+    }
+
+    /**
+     * test chargerLabyrinthe avec aucun personnage
+     */
+    @Test
+    public void test29_chargerLabyrinthe_pasPJ() throws Exception {
+        // preparation des donnees
+        boolean exception = false;
+        String message = "";
+        String res = "personnage inconnu";
+
+        // methode testee
+        try {
+            Labyrinthe laby = Labyrinthe.chargerLabyrinthe("laby\\laby_pasPJ.txt");
+        } catch (FichierIncorrectException e) {
+            exception = true;
+            message = e.getMessage();
+        }
+
+        // verification
+        assertTrue(exception, "Il devrait y avoir une erreur dans le chargement du labyrinthe");
+        assertEquals(res, message, "Le message d'exception devrait etre correct");
+    }
+
+    /**
+     * test chargerLabyrinthe avec deux personnages (ou plus)
+     */
+    @Test
+    public void test30_chargerLabyrinthe_deuxPJ() throws Exception {
+        // preparation des donnees
+        boolean exception = false;
+        String message = "";
+        String res = "plusieurs personnages";
+
+        // methode testee
+        try {
+            Labyrinthe laby = Labyrinthe.chargerLabyrinthe("laby\\laby_deuxPJ.txt");
+        } catch (FichierIncorrectException e) {
+            exception = true;
+            message = e.getMessage();
+        }
+
+        // verification
+        assertTrue(exception, "Il devrait y avoir une erreur dans le chargement du labyrinthe");
+        assertEquals(res, message, "Le message d'exception devrait etre correct");
+    }
 }

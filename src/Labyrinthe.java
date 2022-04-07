@@ -62,13 +62,15 @@ class Labyrinthe{
      * @return le caractere correspond aux coordonnes x et y
      */
     char getChar(int x, int y) {
-        if (this.murs[x][y]) {
+        if (x < 0 || y < 0 || x >= this.nbLignes || y >= this.nbColonnes) {
+            return MUR;
+        } else if (this.murs[x][y]) {
             return MUR;
         } else if ((this.personnage.getX() == x) && (this.personnage.getY() == y)){
             return PJ;
         } else if ((this.sortie.getX() == x) && (this.sortie.getY() == y)) {
             return SORTIE;
-        } else{
+        } else {
             return VIDE;
         }
     }
